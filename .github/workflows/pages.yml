@@ -27,6 +27,12 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
+      - name: Bundle Three.js locally
+        run: |
+          mkdir -p vendor
+          curl -L --fail --retry 3 https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js -o vendor/three.min.js
+          test -s vendor/three.min.js
+
       - name: Upload site
         uses: actions/upload-pages-artifact@v3
         with:
